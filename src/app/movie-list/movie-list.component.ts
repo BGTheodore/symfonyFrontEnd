@@ -16,6 +16,7 @@ export class MovieListComponent implements OnInit {
 
     ngOnInit() {
         this.getMovies();
+        isLoading: boolean = true;
     }
 
     getMovies() {
@@ -23,7 +24,9 @@ export class MovieListComponent implements OnInit {
             .getMovies()
             .subscribe(
                 movies => this.movies = movies,
-                error => this.errorMessage = <any>error
+                this.isLoading = false;
+              },
+              error => this.errorMessage = <any>error
             );
     }
 
